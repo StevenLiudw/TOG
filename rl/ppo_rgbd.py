@@ -213,7 +213,7 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Simple script demonstrating how to use Stable Baselines 3 with ManiSkill2 and RGBD Observations"
     )
-    parser.add_argument("-e", "--env-id", type=str, default="LiftCube-v0")
+    parser.add_argument("-e", "--env-id", type=str, default="PickSingleYCB-v0")
     parser.add_argument(
         "--exp-name", type=str, default="liftcube", help="name of the experiment"
     )
@@ -276,6 +276,7 @@ def main():
     if args.seed is not None:
         set_random_seed(args.seed)
 
+    env = gym.make(env_id, obs_mode=obs_mode, control_mode=control_mode)
     # define a make_env function for Stable Baselines
     def make_env(
         env_id: str,
