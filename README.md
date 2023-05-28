@@ -22,8 +22,14 @@ git clone https://github.com/haosulab/ManiSkill2.git
 pip install stable-baselines3[extra]
 
 # install maniskill2
-cd ManiSkill2 && pip install -e . && cd ..
+cd ManiSkill2 && pip install -e .
 
+# download assets
+# The assets will be downloaded to ./data/ by default
+python  -m mani_skill2.utils.download_asset all 
+# or download task-specific assets by 
+python  -m mani_skill2.utils.download_asset ${ENV_ID} 
+cd ..
 ```
 
 ### Install Maniskill learn (optional)
@@ -33,26 +39,39 @@ cd ManiSkill2 && pip install -e . && cd ..
 # First install pytorch3d
 conda install -c fvcore -c iopath -c conda-forge fvcore iopath
 conda install -c bottler nvidiacub
-# Anaconda Cloud
 conda install pytorch3d -c pytorch3d-nightly
-# pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable"
 
 # then install maniskill2-learn
 git clone https://github.com/haosulab/ManiSkill2-Learn
-cd ManiSkill2-Learn
 pip install ninja
-pip install -e .
+cd ManiSkill2-Learn && pip install -e . && cd ..
 pip install protobuf==3.19.0
 
 ln -s ../ManiSkill2/data data # link the ManiSkill2 asset directory to ManiSkill2-Learn
 # Alternatively, add `export MS2_ASSET_DIR={path_to_maniskill2}/data` to your bashrc file, so that the OS can find the asset directory no matter where you run MS2 envs.
 
+```
+
+### Fetch code
+```bash
+git clone --recurse-submodules https://github.com/jiaming-robot-learning/LIPP.git
+
+# create cgn env
+cd third_party/contact_graspnet
+mamba env create -f contac_graspnet_env.yml -p ./cgn_env
+
+# if needed
+sh compile_pointnet_tfops.sh
+
+# download pretrained models
 
 ```
 
+### Download pretrained models and assets
+```bash
+
+
 ```
-
-
 
 ## Trouble shooting
 #### Gym installation error
@@ -76,3 +95,4 @@ kaggle 1.5.13 requires python-slugify, which is not installed.
 ```
 pip3 install python-slugify
 ```
+

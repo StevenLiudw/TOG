@@ -2,3 +2,5 @@ logs
 data
 videos
 saved_models
+
+*.pyc
