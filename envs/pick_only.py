@@ -1,3 +1,4 @@
+# from mani_skill2.envs.tasks.tabletop.pick_single_ycb import PickSingleYCBEnv
 from mani_skill2.envs.pick_and_place.pick_single import PickSingleYCBEnv
 from mani_skill2.sensors.camera import CameraConfig
 from mani_skill2.utils.registration import register_env
@@ -13,26 +14,12 @@ from gym import spaces
 
 from mani_skill2.utils.common import (
     flatten_dict_keys,
-    flatten_dict_space_keys,
+    # flatten_dict_space_keys,
     merge_dicts,
 )
 
-@register_env("PicOnlykYCB-v0", max_episode_steps=200, override=True)
+@register_env("PicOnlykYCB-v0", max_episode_steps=500, override=True)
 class PickOnlyYCB(PickSingleYCBEnv):
-    # def _register_cameras(self):
-    #     pose = look_at([0.3, 0.2, 0.6], [-0.1, 0, 0.1])
-    #     left_camera = CameraConfig(
-    #         "left_camera", pose.p, pose.q, 128, 128, np.pi / 2, 0.01, 10
-    #     )
-
-    #     pose = look_at([0.3, -0.2, 0.6], [-0.1, 0, 0.1])
-    #     right_camera = CameraConfig(
-    #         "right_camera", pose.p, pose.q, 128, 128, np.pi / 2, 0.01, 10
-    #     )
-    #     return [left_camera, right_camera]
-    
-    # def _register_render_cameras(self):
-    #     return []
     def _initialize_task(self):
         super()._initialize_task()
         self._init_obj_z = self.obj_pose.p[2]
@@ -42,14 +29,16 @@ class PickOnlyYCB(PickSingleYCBEnv):
         obj_to_goal_pos = abs(init_z - self.obj_pose.p[2])
         is_obj_placed = obj_to_goal_pos >= 0.1
         is_robot_static = self.check_robot_static()
+        # raise KeyError
+        # print("I am here!")
+        # print(self.model_id)
         return dict(
             obj_to_goal_pos=obj_to_goal_pos,
             is_obj_placed=is_obj_placed,
             is_robot_static=is_robot_static,
             success=is_obj_placed,
+            name=self.model_id
         )
-    
-
 
 class RGBDPCObservationWrapper(gym.ObservationWrapper):
     """ RGBD and Point Cloud Observation Wrapper"""
@@ -66,7 +55,7 @@ class RGBDPCObservationWrapper(gym.ObservationWrapper):
     def reset(self, **kwargs):
         observation = self.env.reset(**kwargs)
         self.robot_link_ids = self.env.robot_link_ids
-        return self.observation(observation)
+        return self.observation(observation), self.model_id
     
     @staticmethod
     def update_observation_space(space: spaces.Dict):

@@ -10,8 +10,6 @@ def plot_img(img, title=None):
     plt.imshow(img)
 
 
-
-
 def get_rotation_between_vecs(v1:np.ndarray, v2:np.ndarray)->np.ndarray:
     """
     Get the rotation between two vectors
