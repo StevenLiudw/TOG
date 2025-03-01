@@ -1,4 +1,4 @@
-# Robot Grasping with Contact GraspNet and ManiSkill
+# TOG: Training-free Task-oriented Grasp Generation
 
 This project integrates **Contact GraspNet** and **ManiSkill** for robotic grasping. The workflow involves running a **grasping server** and a **robot movement script** in separate environments.
 
