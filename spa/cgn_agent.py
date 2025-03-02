@@ -356,7 +356,7 @@ class CGNAgent():
             return encoded_string
         
         def call_gemini(images, text):
-            genai.configure(api_key="AIzaSyDuubKAVPspwZS-KswiTIJTl1ZdL9t_ITM")
+            genai.configure(api_key="")
             model = genai.GenerativeModel("gemini-2.0-pro-exp-02-05")
             
             image_parts = []
