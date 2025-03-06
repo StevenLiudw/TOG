@@ -69,17 +69,12 @@ Make sure the following dependencies are installed in their respective environme
 
 ### cgn_env (for grasp generation)
 ```bash
-pip install torch numpy open3d transforms3d scipy
+conda env create -f cgn_environment.yml
 ```
 
 ### mani_env2 (for robot control)
 ```bash
-pip install mani_skill2 gym numpy scipy
-```
-
-Alternatively, install all dependencies from `requirements.txt`:
-```bash
-pip install -r requirements.txt
+conda env create -f mani_environment.yml
 ```
 
 
