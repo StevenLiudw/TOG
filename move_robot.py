@@ -21,8 +21,8 @@ from spa.cgn_agent import CGNAgent
 def get_camera_data():
     """Capture one RGB-D frame (and point cloud) from local image files."""
     # Hardcoded file paths for the RGB and depth images.
-    rgb_file = "/home/jz/Desktop/cs4278_data/rgbd/rgb.jpg"       # Change to your RGB image file path.
-    depth_file = "/home/jz/Desktop/cs4278_data/rgbd/d.jpg"     # Change to your depth image file path.
+    rgb_file = "rgb.jpg"       # Change to your RGB image file path.
+    depth_file = "d.jpg"     # Change to your depth image file path.
     
     # Load images from disk.
     rgb = cv2.imread(rgb_file, cv2.IMREAD_COLOR)
@@ -37,7 +37,7 @@ def get_camera_data():
     extrinsic_cv = np.array([[0.99900709,-0.00422515,-0.0443507,0.1974],
                                      [-0.01567638,-0.96516695,-0.26116473,0.076],
                                      [-0.04170237,0.26160068,-0.96427486,0.609],
-                                     [0.0,0.0,0.0,1.0]])
+                                     [0.0,0.0,0.0,1.0]]) # Change to your camera configuration.
 
     # Convert depth image to meters.
     # (Assuming the depth image is in 16-bit PNG format with depth in millimeters)
@@ -176,16 +176,6 @@ if __name__ == "__main__":
         "task_4": [
             "Retrieve the bottle by gripping the body to allow easy twisting.",
             "Retrieve the bottle by gripping the head part to make it easier for me to handle."
-        ],
-        "task_5a": [
-            "Among all the bottles here, identify and retrieve the ketchup bottle.",
-            "Among all the bottles here, identify and retrieve the milk bottle.",
-            "Among all the bottles here, identify and retrieve the honey bottle."
-        ],
-        "task_5b": [
-            "Among all the animal toys here, identify and retrieve the white sheep.",
-            "Among all the animal toys here, identify and retrieve the brown cow.",
-            "Among all the animal toys here, identify and retrieve the pink pig."
         ]
     }
 
