@@ -14,7 +14,20 @@ This project integrates **Contact GraspNet** and **ManiSkill** to enable a robot
 git clone https://github.com/your_username/Training-free-Task-oriented-Grasp-Generation.git
 cd Training-free-Task-oriented-Grasp-Generation
 ```
+---
 
+##  Dependencies
+Make sure the following dependencies are installed in their respective environments:
+
+### cgn_env (for grasp generation)
+```bash
+conda env create -f cgn_environment.yml
+```
+
+### mani_env2 (for robot control)
+```bash
+conda env create -f mani_environment.yml
+```
 ---
 
 ## Setup Instructions
@@ -62,19 +75,6 @@ python move_robot.py --task task_1 --model gemini --task_idx 1 --visual_method g
 | `--visual_method gripper_one` | Defines the visualization method for grasp execution. |
 
 
----
 
-##  Dependencies
-Make sure the following dependencies are installed in their respective environments:
-
-### cgn_env (for grasp generation)
-```bash
-conda env create -f cgn_environment.yml
-```
-
-### mani_env2 (for robot control)
-```bash
-conda env create -f mani_environment.yml
-```
 
 
