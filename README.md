@@ -42,7 +42,7 @@ conda activate cgn_env
 
 #### Robot Control (ManiSkill)
 ```bash
-conda activate mani_env2
+conda activate mani3
 ```
 
 ---
